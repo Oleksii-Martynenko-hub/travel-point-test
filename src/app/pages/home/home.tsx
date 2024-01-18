@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+
+import { UserType } from 'src/app/components/common/hooks/useFetchUserList';
+
 import styles from './home.module.scss';
 
 export interface HomeProps {
-  userList: { id: number; name: string }[];
+  userList: UserType[] | null;
 }
 
 export function Home({ userList }: HomeProps) {
@@ -11,11 +14,12 @@ export function Home({ userList }: HomeProps) {
       <h1>Список користувачів сайту</h1>
 
       <ul className={styles['user-list']}>
-        {userList.map(({ id, name }) => (
-          <li key={id}>
-            {name} - <Link to={`/user-profile/${id}`}>Деталі</Link>
-          </li>
-        ))}
+        {userList &&
+          userList.map(({ id, name }) => (
+            <li key={id}>
+              {name} - <Link to={`/user-profile/${id}`}>Деталі</Link>
+            </li>
+          ))}
       </ul>
     </div>
   );
