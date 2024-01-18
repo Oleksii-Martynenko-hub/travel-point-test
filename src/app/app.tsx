@@ -20,9 +20,7 @@ export function App() {
     );
 
   return (
-    <div
-      className={styles.container}
-    >
+    <div className={styles.app}>
       <Routes>
         <Route path="/" element={<Home userList={userList} />} />
         <Route
