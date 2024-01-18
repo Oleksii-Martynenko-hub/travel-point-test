@@ -51,7 +51,7 @@ export const useFetchUserList = () => {
       }
     };
 
-    fetchUsers();
+    if (userList === null && !loading) fetchUsers();
   }, []);
 
   return { userList, loading, error };
