@@ -10,7 +10,7 @@ export interface HomeProps {
 export function Home({ userList }: HomeProps) {
   return (
     <div className={styles.home}>
-      <h1>Список користувачів сайту</h1>
+      <h1 className="title">Список користувачів сайту</h1>
 
       <UserList userList={userList} />
     </div>
