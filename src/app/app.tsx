@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useFetchUserList } from './components/common/hooks/useFetchUserList';
 
 import Home from './pages/home/home';
+import UserProfile from './pages/user-profile/user-profile';
 
 import styles from './app.module.scss';
 
@@ -24,7 +25,10 @@ export function App() {
     >
       <Routes>
         <Route path="/" element={<Home userList={userList} />} />
-        <Route path="/user-profile/:userId" element={<div>User</div>} />
+        <Route
+          path="/user-profile/:userId"
+          element={<UserProfile userList={userList} />}
+        />
       </Routes>
     </div>
   );
