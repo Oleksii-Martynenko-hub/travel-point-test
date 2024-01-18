@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-
 import { UserType } from '../common/hooks/useFetchUserList';
+import UserItem from '../user-item/user-item';
 
 import styles from './user-list.module.scss';
 
@@ -13,21 +12,13 @@ function UserList({ userList }: Props) {
     <ul className={styles['user-list']}>
       {userList &&
         userList.map(({ id, name, email, website }) => (
-          <li key={id}>
-            <p className={styles['user-name']}>{name}</p> |{' '}
-            <a className={styles['email-link']} href={`mailto:${email}`}>
-              {email}
-            </a>{' '}
-            |{' '}
-            <a
-              className={styles['website-link']}
-              href={`https://${website}`}
-              target="blank"
-            >
-              {website}
-            </a>{' '}
-            | <Link to={`/user-profile/${id}`}>Деталі</Link>
-          </li>
+          <UserItem
+            key={id}
+            id={id}
+            name={name}
+            email={email}
+            website={website}
+          />
         ))}
     </ul>
   );
