@@ -1,9 +1,33 @@
 .user-item {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: space-between;
+  grid-template-columns: repeat(3, 1fr) auto;
+  align-items: center;
   padding: 1rem 1.8rem;
   background-color: #fff;
   border: 1px solid #eee;
   border-radius: 6px;
+
+  .user-name {
+    font-size: 1.1rem;
+  }
+
+  .email-link, .website-link {
+    color: rgb(101, 105, 118);
+
+    &:hover {
+      color: rgb(20, 20, 40);
+      text-decoration: underline;
+    }
+  }
+
+  .user-details-link {
+    background-color: rgb(62, 132, 231);
+    color: #fff;
+    border-radius: 4px;
+    padding: 0.25rem 1rem;
+
+    &:hover {
+      background-color: darken(rgb(62, 132, 231), 7) ;
+    }
+  }
 }
