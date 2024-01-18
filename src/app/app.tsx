@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
+import Home from './pages/home/home';
+
 import styles from './app.module.scss';
 
 export function App() {
@@ -8,7 +10,17 @@ export function App() {
       className={styles.container}
     >
       <Routes>
-        <Route path="/" element={<div>Home</div>} />
+        <Route
+          path="/"
+          element={
+            <Home
+              userList={[
+                { id: 1, name: 'Олексій' },
+                { id: 2, name: 'Віктор' },
+              ]}
+            />
+          }
+        />
         <Route path="/user-profile/:userId" element={<div>User</div>} />
       </Routes>
     </div>
