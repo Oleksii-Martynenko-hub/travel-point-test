@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import StyledLink from '../common/styled-link/styled-link';
 
 import styles from './user-item.module.scss';
 
@@ -26,9 +26,7 @@ export function UserItem({ id, name, email, website }: UserItemProps) {
         {website}
       </a>
 
-      <Link className={styles['user-details-link']} to={`/user-profile/${id}`}>
-        Деталі
-      </Link>
+      <StyledLink to={`/user-profile/${id}`}>Деталі</StyledLink>
     </li>
   );
 }
