@@ -15,8 +15,8 @@ export function App() {
 
   if (error)
     return (
-      <div>
-        <h3 style={{ color: 'red' }}>{error}</h3>
+      <div className={styles.app}>
+        <h3 style={{ color: '#ca2626' }}>{error}</h3>
       </div>
     );
 

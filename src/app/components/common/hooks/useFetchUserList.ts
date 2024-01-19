@@ -45,7 +45,7 @@ export const useFetchUserList = () => {
           setError(error.message);
           return;
         }
-        setError('Internal server error 500: something went wrong!');
+        setError('Something went wrong! Try to reload or come later.');
       } finally {
         setLoading(false);
       }
