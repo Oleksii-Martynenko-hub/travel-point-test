@@ -9,12 +9,19 @@ export interface UserProfileProps {
   userList: UserType[] | null;
 }
 
+const NotExistUser = () => (
+  <>
+    <StyledLink to="/">Back</StyledLink>
+    <h2 className="title">User doesn't exist!</h2>
+  </>
+);
+
 export function UserProfile({ userList }: UserProfileProps) {
   const params = useParams();
 
   const { userId } = params;
 
-  if (!userId) return <h3>User doesn't exist!</h3>;
+  if (!userId) return <NotExistUser />;
 
   if (!userList) {
     redirect('/');
@@ -23,7 +30,7 @@ export function UserProfile({ userList }: UserProfileProps) {
 
   const user = userList.find((user) => user.id === parseInt(userId));
 
-  if (!user) return <h3>User doesn't exist!</h3>;
+  if (!user) return <NotExistUser />;
 
   const { name, email, website, address, phone, company, username } = user;
 
