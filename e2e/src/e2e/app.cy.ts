@@ -11,7 +11,7 @@ import {
 describe('e2e', () => {
   beforeEach(() => cy.visit('/'));
 
-  let firstUser: { name: string; email: string; website: string } | null = null;
+  let firstUser: { [key: string]: string } | null = null;
 
   it('should display title message', () => {
     getTitle().contains(/Список користувачів сайту/);
@@ -56,9 +56,9 @@ describe('e2e', () => {
         .first()
         .within(() => {
           if (firstUser) {
-            getUserName().contains(firstUser?.name);
-            getUserEmail().contains(firstUser?.email);
-            getUserWebsite().contains(firstUser?.website);
+            getUserName().contains(firstUser.name);
+            getUserEmail().contains(firstUser.email);
+            getUserWebsite().contains(firstUser.website);
           }
 
           getDetailsLink()
