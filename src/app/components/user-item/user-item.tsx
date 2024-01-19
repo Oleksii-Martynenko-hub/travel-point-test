@@ -26,7 +26,9 @@ export function UserItem({ id, name, email, website }: UserItemProps) {
         {website}
       </a>
 
-      <StyledLink to={`/user-profile/${id}`}>Деталі</StyledLink>
+      <StyledLink classes="details-link" to={`/user-profile/${id}`}>
+        Деталі
+      </StyledLink>
     </li>
   );
 }
