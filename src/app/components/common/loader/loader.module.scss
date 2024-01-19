@@ -1,0 +1,37 @@
+.loader {
+  --size: 50px;
+  --border-width: 10px;
+
+  aspect-ratio: 1;
+  width: var(--size);
+  border: var(--border-width) solid rgb(47, 131, 204);
+  border-radius: 100vh;
+  border-right-color: transparent;
+
+  animation: spin 1s ease-in-out infinite;
+}
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

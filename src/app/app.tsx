@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { useFetchUserList } from './components/common/hooks/useFetchUserList';
+import Loader from './components/common/loader/loader';
 
 import Home from './pages/home/home';
 import UserProfile from './pages/user-profile/user-profile';
@@ -10,7 +11,7 @@ import styles from './app.module.scss';
 export function App() {
   const { userList, loading, error } = useFetchUserList();
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader isFullPage />;
 
   if (error)
     return (
