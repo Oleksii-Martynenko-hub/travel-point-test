@@ -74,4 +74,12 @@ describe('e2e', () => {
 
     getTitle().contains(/Список користувачів сайту/);
   });
+
+  it("should display user doesn't exist and back link", () => {
+    cy.visit('/user-profile/user-not-exist');
+
+    getBackLink().contains('Back').should('have.attr', 'href', '/');
+
+    getTitle().contains(/User doesn't exist!/);
+  });
 });

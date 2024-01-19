@@ -14,7 +14,7 @@ const NotExistUser = () => (
     <StyledLink classes="back-link" to="/">
       Back
     </StyledLink>
-    <h2 className="title">User doesn't exist!</h2>
+    <h1 className="title">User doesn't exist!</h1>
   </>
 );
 
