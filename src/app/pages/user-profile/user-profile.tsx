@@ -11,7 +11,9 @@ export interface UserProfileProps {
 
 const NotExistUser = () => (
   <>
-    <StyledLink to="/">Back</StyledLink>
+    <StyledLink classes="back-link" to="/">
+      Back
+    </StyledLink>
     <h2 className="title">User doesn't exist!</h2>
   </>
 );
@@ -37,7 +39,9 @@ export function UserProfile({ userList }: UserProfileProps) {
   return (
     <div className={styles['user-profile']}>
       <div className={styles['back-link-wrapper']}>
-        <StyledLink to="/">Back</StyledLink>
+        <StyledLink classes="back-link" to="/">
+          Back
+        </StyledLink>
       </div>
 
       <h2 className={`title ${styles['user-name']}`}>{name}</h2>
@@ -52,7 +56,7 @@ export function UserProfile({ userList }: UserProfileProps) {
         </a>
 
         <p className={styles.property}>username:</p>
-        <p>{username}</p>
+        <p className="user-nickname">{username}</p>
 
         <p className={styles.property}>email:</p>
         <a className={styles['email-link']} href={`mailto:${email}`}>
@@ -60,18 +64,18 @@ export function UserProfile({ userList }: UserProfileProps) {
         </a>
 
         <p className={styles.property}>company:</p>
-        <p>{company.name}</p>
+        <p className="user-company">{company.name}</p>
 
         <p className={styles.property}>phone:</p>
         <a
-          className={styles['website-link']}
+          className={styles['phone-link']}
           href={`phone:${phone.split(' ')[0]}`}
         >
           {phone.split(' ')[0]}
         </a>
 
         <p className={styles.property}>address:</p>
-        <p>
+        <p className="user-address">
           {address.suite}, {address.street}, {address.city}
         </p>
       </div>
