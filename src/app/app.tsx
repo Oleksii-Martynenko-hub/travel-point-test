@@ -5,6 +5,7 @@ import Loader from './components/common/loader/loader';
 
 import Home from './pages/home/home';
 import UserProfile from './pages/user-profile/user-profile';
+import PageNotFound from './pages/page-not-found/page-not-found';
 
 import styles from './app.module.scss';
 
@@ -28,6 +29,7 @@ export function App() {
           path="/user-profile/:userId"
           element={<UserProfile userList={userList} />}
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
