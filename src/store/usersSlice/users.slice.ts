@@ -65,11 +65,7 @@ export const initialUsersState: UsersState = usersAdapter.getInitialState({
 export const usersSlice = createSlice({
   name: USERS_FEATURE_KEY,
   initialState: initialUsersState,
-  reducers: {
-    add: usersAdapter.addOne,
-    remove: usersAdapter.removeOne,
-    // ...
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state: UsersState) => {

@@ -1,17 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {
+  PreloadedState,
+  combineReducers,
+  configureStore,
+} from '@reduxjs/toolkit';
 
 import { USERS_FEATURE_KEY, usersReducer } from './usersSlice/users.slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-export const store = configureStore({
-  reducer: { [USERS_FEATURE_KEY]: usersReducer },
-
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-  devTools: process.env.NODE_ENV !== 'production',
+const rootReducer = combineReducers({
+  [USERS_FEATURE_KEY]: usersReducer,
 });
 
-export type AppStore = typeof store;
-export type RootState = ReturnType<AppStore['getState']>;
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    preloadedState,
+  });
+};
+
+// setupListeners(setupStore().dispatch);
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
