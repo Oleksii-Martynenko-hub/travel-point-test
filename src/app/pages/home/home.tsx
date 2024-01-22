@@ -1,13 +1,13 @@
-import { UserType } from 'src/app/components/common/hooks/useFetchUserList';
+import { useAppSelector } from '../../../store';
+import { selectAllUsers } from '../../../store/usersSlice/users.slice';
+
 import UserList from '../../components/user-list/user-list';
 
 import styles from './home.module.scss';
 
-export interface HomeProps {
-  userList: UserType[] | null;
-}
+export function Home() {
+  const userList = useAppSelector(selectAllUsers);
 
-export function Home({ userList }: HomeProps) {
   return (
     <div className={styles.home}>
       <h1 className="title">Список користувачів сайту</h1>

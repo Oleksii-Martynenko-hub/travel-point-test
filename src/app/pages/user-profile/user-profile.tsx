@@ -1,14 +1,12 @@
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { UserType } from '../../components/common/hooks/useFetchUserList';
+import { useAppSelector } from '../../../store';
+import { selectUserById } from '../../../store/usersSlice/users.slice';
+
 import StyledLink from '../../components/common/styled-link/styled-link';
-
-import styles from './user-profile.module.scss';
 import UserInfo from '../../components/user-info/user-info';
 
-export interface UserProfileProps {
-  userList: UserType[] | null;
-}
+import styles from './user-profile.module.scss';
 
 const NotExistUser = () => (
   <>
@@ -19,19 +17,12 @@ const NotExistUser = () => (
   </>
 );
 
-export function UserProfile({ userList }: UserProfileProps) {
-  const params = useParams();
+export function UserProfile() {
+  const params = useParams<{ userId: string }>();
 
-  const { userId } = params;
+  const userId = params.userId || '-1';
 
-  if (!userId) return <NotExistUser />;
-
-  if (!userList) {
-    redirect('/');
-    return;
-  }
-
-  const user = userList.find((user) => user.id === parseInt(userId));
+  const user = useAppSelector(selectUserById(userId));
 
   if (!user) return <NotExistUser />;
 

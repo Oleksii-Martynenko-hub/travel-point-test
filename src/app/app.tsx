@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { useFetchUserList } from './components/common/hooks/useFetchUserList';
+import { useAppDispatch, useAppSelector } from '../store';
+import {
+  fetchUsers,
+  selectUsersError,
+  selectUsersIsPending,
+} from '../store/usersSlice/users.slice';
+
 import Loader from './components/common/loader/loader';
 
 import Home from './pages/home/home';
@@ -10,7 +17,14 @@ import PageNotFound from './pages/page-not-found/page-not-found';
 import styles from './app.module.scss';
 
 export function App() {
-  const { userList, loading, error } = useFetchUserList();
+  const dispatch = useAppDispatch();
+
+  const loading = useAppSelector(selectUsersIsPending);
+  const error = useAppSelector(selectUsersError);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   if (loading) return <Loader isFullPage />;
 
@@ -24,11 +38,8 @@ export function App() {
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path="/" element={<Home userList={userList} />} />
-        <Route
-          path="/user-profile/:userId"
-          element={<UserProfile userList={userList} />}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/user-profile/:userId" element={<UserProfile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
