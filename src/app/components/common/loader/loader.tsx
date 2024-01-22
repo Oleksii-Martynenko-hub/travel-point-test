@@ -26,7 +26,9 @@ const Loader = ({
   );
 
   return isFullPage ? (
-    <div className={styles['full-page-wrapper']}>{loaderElement}</div>
+    <div aria-label="full-page-wrapper" className={styles['full-page-wrapper']}>
+      {loaderElement}
+    </div>
   ) : (
     <div className={styles['loader-wrapper']}>{loaderElement}</div>
   );
