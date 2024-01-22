@@ -1,30 +1,26 @@
-import {
-  render,
-  renderHook,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+import { renderHook, waitForElementToBeRemoved } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import 'whatwg-fetch';
+
+import { renderWithProviders } from '../utils/store-provider-test';
 
 import { useFetchUserList } from './components/common/hooks/useFetchUserList';
 import App from './app';
 
+const mockComponent = (path = '/') => (
+  <MemoryRouter initialEntries={[path]}>
+    <App />
+  </MemoryRouter>
+);
+
 describe('App', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
+    const { baseElement } = renderWithProviders(mockComponent());
     expect(baseElement).toBeTruthy();
   });
 
   it('should render Home component for the default route', async () => {
-    const { getByRole } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const { getByRole } = renderWithProviders(mockComponent());
     expect(getByRole('status')).toBeTruthy();
     await waitForElementToBeRemoved(() => getByRole('status'));
 
@@ -35,11 +31,7 @@ describe('App', () => {
 
   it('should render UserProfile component', async () => {
     const { result } = renderHook(() => useFetchUserList());
-    const { getByRole } = render(
-      <MemoryRouter initialEntries={['/user-profile/1']}>
-        <App />
-      </MemoryRouter>
-    );
+    const { getByRole } = renderWithProviders(mockComponent('/user-profile/1'));
     expect(getByRole('status')).toBeTruthy();
     await waitForElementToBeRemoved(() => getByRole('status'));
 
@@ -49,11 +41,7 @@ describe('App', () => {
   });
 
   it('should render Page not found component if route is invalid', async () => {
-    const { getByRole } = render(
-      <MemoryRouter initialEntries={['/not-exist']}>
-        <App />
-      </MemoryRouter>
-    );
+    const { getByRole } = renderWithProviders(mockComponent('/not-exist'));
 
     await waitForElementToBeRemoved(() => getByRole('status'));
 
