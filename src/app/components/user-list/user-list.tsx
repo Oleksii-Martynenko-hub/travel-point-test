@@ -10,7 +10,7 @@ interface Props {
 function UserList({ userList }: Props) {
   return (
     <ul className={styles['user-list']}>
-      {userList &&
+      {userList?.length ? (
         userList.map(({ id, name, email, website }) => (
           <UserItem
             key={id}
@@ -19,7 +19,14 @@ function UserList({ userList }: Props) {
             email={email}
             website={website}
           />
-        ))}
+        ))
+      ) : (
+        <li className="empty-item">
+          <p className="there-is-no-users">
+            Список користувачів пустий, поки що.
+          </p>
+        </li>
+      )}
     </ul>
   );
 }
